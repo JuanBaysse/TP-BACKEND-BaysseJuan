@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="text-center mb-4">Productos</h2>
+      <div class="d-flex justify-content-center mb-4">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#carritoModal">
+          <i class="bi bi-cart"></i> Carrito
+        </button>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="row">
+        <div class="col-12 col-md-6 col-lg-4 mb-4" *ngFor="let producto of productos">
+          <div class="card h-100">
+            <img [src]="'assets/' + producto.img" class="card-img-top" alt="{{producto.nombre}}">
+            <div class="card-body">
+              <h5 class="card-title">{{producto.nombre}}</h5>
+              <p class="card-text">{{producto.descripcion}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="fw-bold">$ {{producto.precio}}</span>
+              </div>
+              <button class="btn btn-primary mt-3" (click)="agregarAlCarrito(producto)" data-bs-toggle="modal" data-bs-target="#exitoModal">Agregar al carrito</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="exitoModal" tabindex="-1" aria-labelledby="exitoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exitoModalLabel">¡Éxito!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        El producto se ha agregado al carrito.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" id="carritoModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Carrito de compras</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ul>
+          <li *ngFor="let producto of carrito">
+            <img [src]="'assets/' + producto.img" class="img-thumbnail" alt="{{producto.nombre}}" style="height: 110px; width: 110px;">
+            {{ producto.nombre }} - ${{ producto.precio }} - 
+            <button type="button" class="btn btn-sm btn-primary" (click)="aumentarCantidad(producto)">+</button>
+            {{ producto.cantidad }}
+            <button type="button" class="btn btn-sm btn-secondary" (click)="disminuirCantidad(producto)">-</button>
+          </li>
+        </ul>
+        <p>Total: $ {{ total }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Comprar</button>
+      </div>
+    </div>
+  </div>
+</div>

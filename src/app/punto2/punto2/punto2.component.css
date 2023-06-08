@@ -1,0 +1,95 @@
+/* Estilo para el título del juego */
+h1.text-center {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #2c3e50;
+  }
+  
+  /* Estilo para los botones de respuesta */
+  .btn-primary {
+    background-color: #3498db;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin: 10px;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .btn-primary:hover {
+    background-color: #2980b9;
+  }
+  
+  /* Estilo para el botón de comenzar */
+  .btn-lg {
+    background-color: #27ae60;
+    color: #fff;
+    font-size: 2rem;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 50px;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .btn-lg:hover {
+    background-color: #2ecc71;
+  }
+  
+  /* Estilo para el fondo del juego */
+  .container {
+    background-color: #f2f2f2;
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Estilo para los modales */
+  .modal-header {
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 5px 5px 0 0;
+  }
+  
+  .modal-body {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2c3e50;
+  }
+  
+  .modal-footer {
+    background-color: #f2f2f2;
+    border-radius: 0 0 10px 10px;
+  }
+  
+  /* Estilo para los botones dentro de los modales */
+  .btn-primary[data-bs-toggle="modal"] {
+    background-color: #27ae60;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .btn-primary[data-bs-toggle="modal"]:hover {
+    background-color: #2ecc71;
+  }
+  
+  /* Estilo para el botón "Volver a jugar" */
+  .btn-primary[data-bs-target="#exampleModalToggle2"] {
+    background-color: #e74c3c;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .btn-primary[data-bs-target="#exampleModalToggle2"]:hover {
+    background-color: #c0392b;
+  }
+  

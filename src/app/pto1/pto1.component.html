@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="text-center mb-4">Productos</h2>
+    </div>
+    <div class="d-flex justify-content-center mb-4">
+      <button type="button" class="btn btn-primary" (click)="Agregar()">
+        <i class="bi bi-plus-lg"></i> Agregar Producto
+      </button>
+    </div>
+    <div class="col-12">
+      <div class="row">
+        <div class="col-12 col-md-6 col-lg-4 mb-4" *ngFor="let producto of productosDestacados">
+          <div class="card h-100">
+            <img [src]="producto.imagen" class="card-img-top" alt="{{producto.nombre}}">
+            <div class="card-body">
+              <h5 class="card-title">{{producto.nombre}}</h5>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="fw-bold">$ {{producto.precio}}</span>
+                <span class="fw-bold">stock: {{producto.stock}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

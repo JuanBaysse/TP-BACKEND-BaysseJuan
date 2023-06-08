@@ -1,0 +1,61 @@
+<div class="container"> 
+     <h1 class="text-center">Juego de Palabras</h1>
+  <div *ngIf="iteracion <= 8">
+    <h1 class="text-center" *ngIf="!vocales">¿Cuántas vocales tiene esta palabra: {{primeraPalabra}}?</h1>
+    <h1 class="text-center" *ngIf="!consonantes">¿Cuántas consonantes tiene esta palabra: {{primeraPalabra}}?</h1>
+    <h1 class="text-center" *ngIf="!letras">¿Cuántas letras tiene esta palabra: {{primeraPalabra}}?</h1>
+    <h1 class="text-center" *ngIf="!silabas">¿Cuántas sílabas tiene esta palabra: {{primeraPalabra}}?</h1>
+    <div *ngIf="!inicio">
+      <div class="d-grid gap-2 col-6 mx-auto mb-3 text-center">
+        <button type="button" class="btn btn-primary" *ngFor="let opcion of opcionesRespuesta" (click)="respuesta(opcion)">{{ opcion }}</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center mt-3">
+    <button type="button" class="btn btn-lg btn-primary" (click)="comenzar()" [disabled]="!inicio">
+      Empezar el Juego
+    </button>
+      </div>
+  </div>
+ 
+  </div>
+  <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Puntuación</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <h1>Correctas: {{correctas}}</h1>
+          <h1>Incorrectas: {{incorrectas}}</h1>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Siguiente</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">¿Quieres jugar de nuevo?</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          Si tuviste muchos errores, vuelve a intentarlo.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" (click)="recargar()" data-bs-toggle="modal">Volver a jugar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col text-center mt-3" *ngIf="iteracion >= 9">
+  <button type="button" class="btn btn-lg btn-primary"  data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Resultado</button>
+    </div>
+    </div>
+</div>

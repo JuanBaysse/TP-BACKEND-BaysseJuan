@@ -1,0 +1,93 @@
+<main class="container-fluid">
+  <div class="row">
+    <section class="col-md-8">
+      <div class="table-responsive mt-5" *ngIf="coins && coins.length > 0">
+        <table class="table table-striped table-hover">
+          <thead class="table-primary">
+            <tr>
+              <th>#</th>
+              <th>Símbolo</th>
+              <th>Nombre</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let coin of coins.slice(0, 10); let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ coin.symbol }}</td>
+              <td>{{ coin.name }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+      <aside class="col-md-4 col-sm-12 mt-3 mb-5">
+        <h1>Conversor de Divisas</h1>
+        <div class="table-border mt-4">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td><label for="cantidadInput">Cantidad:</label></td>
+                <td><input type="text" id="cantidadInput" class="form-control" [(ngModel)]="fromValue" placeholder="Ingrese la cantidad"></td>
+              </tr>
+              <tr>
+                <td><label for="cantidadInput">Email:</label></td>
+                <td><input type="text" id="Email" class="form-control" [(ngModel)]="email" placeholder="Ingrese tu mail"></td>
+              </tr>
+              <tr>
+                <td><label for="monedaOrigenSelect">Moneda Origen:</label></td>
+                <td>
+                  <select id="cantidadInput" class="form-control" [(ngModel)]="fromType">
+                    <option value="" disabled selected>Seleccione moneda destino</option>
+                    <option *ngFor="let coin of coins" [value]="coin.symbol">{{ coin.symbol }}</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td><label for="monedaDestinoSelect">Moneda Destino:</label></td>
+                <td>
+                  <select id="cantidadInput" class="form-control" [(ngModel)]="toType">
+                    <option value="" disabled selected>Seleccione moneda destino</option>
+                    <option *ngFor="let coin of coins" [value]="coin.symbol">{{ coin.symbol }}</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><button type="submit" class="btn btn-primary" (click)="convert()">Obtener resultado</button></td>
+              </tr>
+              <tr>
+                <td><label for="resultadoOutput">Resultado:</label></td>
+                <td>{{result}}</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><button type="submit" class="btn btn-primary" (click)="onSubmit()" data-bs-toggle="modal" data-bs-target="#exampleModal">Convertir</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </aside>
+      
+
+      
+
+    </div>
+  </main>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="exampleModalLabel">Mensaje del Sistema</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>{{modal}}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

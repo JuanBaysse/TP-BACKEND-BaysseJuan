@@ -1,0 +1,69 @@
+<div class="container mt-5">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>DNI</th>
+        <th>Precio Real</th>
+        <th>Tipo de Espectador</th>
+        <th>Fecha de Cobro</th>
+        <th>Precio Cobrado</th>
+        <th>Modificar</th>
+        <th>Eliminar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ticket of tickets">
+        <td>{{ticket.id}}</td>
+        <td>{{ ticket.dni }}</td>
+        <td>{{ ticket.precioReal | currency }}</td>
+        <td>{{ ticket.tipoEspectador == 'l' ? 'Local' : 'Extranjero' }}</td>
+        <td>{{ ticket.fechaCobro | date:'dd/MM/yyyy' }}</td>
+        <td>{{ticket.precioCobrado | currency }}</td>
+        <td><button  (click)="modificarTicket(ticket)" class="btn btn-warning"><i class="bi bi-pencil-square"></i></button></td>
+        <td><button  (click)="eliminarTicket(ticket)" class="btn btn-danger"><i class="bi bi-trash"></i></button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="d-flex justify-content-center mb-2">
+    <button (click)="agregarTicket()" class="btn btn-primary mx-2">Agregar <i class="bi bi-plus-square"></i></button>
+    <button (click)="mostrar()" class="btn btn-primary mx-2">{{ resumen ? 'Ocultar' : 'Resumen' }}</button>
+  </div>
+  <div *ngIf="resumen">
+    <div class="form-group">
+      <label for="tipoEspectador">Filtrar por tipo de espectador:</label>
+      <select name="tipoEspectador" id="tipoEspectador" [(ngModel)]="tipoEspectador" (ngModelChange)="filtrarTickets($event)" class="form-control">
+        <option value="">Todos</option>
+        <option value="l">Local</option>
+        <option value="e">Extranjero</option>
+      </select>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>DNI</th>
+          <th>Precio Real</th>
+          <th>Tipo de Espectador</th>
+          <th>Fecha de Cobro</th>
+          <th>Precio Cobrado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ticket of ticketsFiltrados">
+          <td>{{ticket.id}}</td>
+          <td>{{ ticket.dni }}</td>
+          <td>{{ ticket.precioReal | currency }}</td>
+          <td>{{ ticket.tipoEspectador == 'l' ? 'Local' : 'Extranjero' }}</td>
+          <td>{{ ticket.fechaCobro | date:'dd/MM/yyyy' }}</td>
+          <td>{{ticket.precioCobrado | currency }}</td>
+        </tr>
+        <tr *ngIf="ticketsFiltrados.length > 0">
+          <td colspan="2">Total Tickets: {{ticketsFiltrados.length}}</td>
+          <td colspan="4">Total Dinero: {{totalDinero | currency}}</td>
+        </tr>
+      </tbody>
+</table>
+</div>
