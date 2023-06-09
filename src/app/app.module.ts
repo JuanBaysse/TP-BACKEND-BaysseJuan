@@ -15,6 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { Pto1AComponent } from './pto1-a/pto1-a.component';
 import { PagebComponent } from './pageb/pageb/pageb.component';
 import { Pto2Component } from './pto2/pto2.component';
+import { Pto3Component } from './pto3/pto3.component';
+import { Pto3aComponent } from './pto3a/pto3a.component';
 
 
 
@@ -30,7 +32,9 @@ import { Pto2Component } from './pto2/pto2.component';
     Pto1Component,
     Pto1AComponent,
     PagebComponent,
-    Pto2Component
+    Pto2Component,
+    Pto3Component,
+    Pto3aComponent
   ],
   imports: [
     BrowserModule,

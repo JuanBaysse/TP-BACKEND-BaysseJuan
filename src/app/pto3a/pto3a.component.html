@@ -1,0 +1,87 @@
+<div class="container mt-5">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Precio Ticket</th>
+          <th>Categoria Espectador</th>
+          <th>Fecha Compra</th>
+          <th>Modificar</th>
+          <th>Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ticket of tickets">
+          <td>{{ticket._id}}</td>
+          <td>${{ ticket.precioTicket}}</td>
+          <td>{{ ticket.categoriaEspectador == 'l' ? 'Local' : 'Extranjero' }}</td>
+          <td>{{ ticket.fechaCompra | date:'dd/MM/yyyy' }}</td>
+          <td><button  (click)="modificarTicket(ticket)" class="btn btn-warning"><i class="bi bi-pencil-square"></i></button></td>
+          <td><button   (click)="eliminarTicket(ticket)" class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-trash"></i></button></td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div class="d-flex justify-content-center mb-2">
+      <button (click)="agregarTicket()" class="btn btn-primary mx-2">Agregar <i class="bi bi-plus-square"></i></button>
+      <button (click)="mostrar()" class="btn btn-primary mx-2">{{ resumen ? 'Ocultar' : 'Resumen' }}</button>
+    </div>
+    <div *ngIf="resumen">
+        <div class="container mt-5">
+             <!-- Formulario de filtrado por categoría -->
+             <div class="form-group">
+                <label for="tipoEspectador">Filtrar por categoría de espectador:</label>
+                <select name="tipoEspectador" id="tipoEspectador" [(ngModel)]="tipoEspectador" (ngModelChange)="filtrarTickets(tipoEspectador)" class="form-control">
+                  <option value="">Todos</option>
+                  <option value="l">Local</option>
+                  <option value="e">Extranjero</option>
+                </select>
+              </div>
+            </div>
+            <table class="table">
+              <!-- Encabezado de la tabla -->
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Precio Ticket</th>
+                  <th>Categoria Espectador</th>
+                  <th>Fecha Compra</th>
+                  <th>Espectador</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Filas de la tabla -->
+                <tr *ngFor="let ticket of ticketsFiltrados">
+                  <td>{{ ticket._id }}</td>
+                  <td>${{ ticket.precioTicket }}</td>
+                  <td>{{ ticket.categoriaEspectador  == 'l' ? 'Local' : 'Extranjero'  }}</td>
+                  <td>{{ ticket.fechaCompra | date:'dd/MM/yyyy' }}</td>
+                  <td>{{ ticket.espectador.apellido }},{{ ticket.espectador.nombre }}</td>
+                </tr>
+                <tr *ngIf="ticketsFiltrados.length > 0">
+                    <td colspan="2">Total Tickets: {{ticketsFiltrados.length}}</td>
+                    <td colspan="4">Total Dinero: {{totalDinero | currency}}</td>
+                </tr>
+              </tbody>
+            </table>
+          
+           
+  </div>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="exampleModalLabel">Mensaje del Sistema</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>{{modal}}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

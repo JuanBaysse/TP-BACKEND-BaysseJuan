@@ -53,7 +53,7 @@
               </tr>
               <tr>
                 <td></td>
-                <td><button type="submit" class="btn btn-primary" (click)="convert()">Obtener resultado</button></td>
+                <td><button type="submit" class="btn btn-primary" [disabled]="!validarCampos()" (click)="convert()">Obtener resultado</button></td>
               </tr>
               <tr>
                 <td><label for="resultadoOutput">Resultado:</label></td>
@@ -61,7 +61,7 @@
               </tr>
               <tr>
                 <td></td>
-                <td><button type="submit" class="btn btn-primary" (click)="onSubmit()" data-bs-toggle="modal" data-bs-target="#exampleModal">Convertir</button></td>
+                <td><button type="submit" class="btn btn-primary" (click)="onSubmit()" data-bs-toggle="modal" data-bs-target="#exampleModal"  [disabled]="!validarCamposConvertir()">Convertir</button></td>
               </tr>
             </tbody>
           </table>
@@ -72,6 +72,11 @@
       
 
     </div>
+    <div class="text-center">
+      <button type="button" class="btn btn-primary col-md-4" (click)="ver()">
+        <i class="bi bi-cash-coin"></i> Ver Transferencias
+      </button>
+    </div>    
   </main>
 
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

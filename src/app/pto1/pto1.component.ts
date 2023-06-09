@@ -32,4 +32,6 @@ export class Pto1Component implements OnInit {
   Agregar() {
     this.router.navigate(["punto1A"]);
   }
+
+ 
 }

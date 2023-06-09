@@ -1,1 +1,72 @@
-<p>pto2 works!</p>
+<div class="row">
+    <section class="col-md-8">
+      <div class="table-responsive mt-5">
+        <table class="table table-striped table-hover">
+          <thead class="table-primary">
+            <tr>
+              <th>#</th>
+              <th>Moneda Origen</th>
+              <th>Cantidad Origen</th>
+              <th>Moneda Destino</th>
+              <th>Cantidad Destino</th>
+              <th>Email Cliente</th>
+              <th>Tasa de Conversión</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let transaccion of transacciones; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ transaccion.monedaOrigen }}</td>
+              <td>{{ transaccion.cantidadOrigen }}</td>
+              <td>{{ transaccion.monedaDestino }}</td>
+              <td>{{ transaccion.cantidadDestino }}</td>
+              <td>{{ transaccion.emailCliente }}</td>
+              <td>{{ transaccion.tasaConversion }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section class="col-md-4">
+        <div class="mt-5">
+          <div class="text-center mb-2">
+            <button class="btn btn-primary col-md-6" [disabled]="!fromType || !toType" (click)="filtrarTransacciones(fromType, toType)" data-bs-toggle="modal" data-bs-target="#exampleModal">Filtrar por moneda</button>
+          </div>
+          <div class="text-center mt-3">
+            <select id="fromTypeInput" class="form-control col-md-4" [(ngModel)]="fromType">
+              <option value="" disabled selected>Seleccione moneda origen</option>
+              <option *ngFor="let coin of coins" [value]="coin.symbol">{{ coin.symbol }}</option>
+            </select>
+          </div>
+          <div class="text-center mt-3">
+            <select id="toTypeInput" class="form-control col-md-4" [(ngModel)]="toType">
+              <option value="" disabled selected>Seleccione moneda destino</option>
+              <option *ngFor="let coin of coins" [value]="coin.symbol">{{ coin.symbol }}</option>
+            </select>
+          </div>
+          <div class="text-center mt-2">
+            <button class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModal" [disabled]=!filtro (click)="mostrarTodas()">Mostrar todas las transacciones</button>
+          </div>
+        </div>
+      </section>
+      
+      
+      
+  </div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="exampleModalLabel">Mensaje del Sistema</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>{{modal}}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

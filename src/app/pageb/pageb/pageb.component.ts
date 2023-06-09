@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ConversorServiceService } from '../../service/conversor-service.service';
 import { Moneda } from './moneda';
-import { Transaccion } from 'src/app/models/Transaccion';
+import { Transaccion } from 'src/app/models/transaccion';
 import { Alert } from 'bootstrap';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 
@@ -17,7 +18,8 @@ export class PagebComponent implements OnInit {
   coins:any;
   transaccion!:Transaccion;
   modal!:string;
-  constructor(private serviceConversor: ConversorServiceService) { 
+  constructor(private serviceConversor: ConversorServiceService,private router: Router,
+    private activateRoute: ActivatedRoute) { 
     this.transaccion= new Transaccion();
    
   }
@@ -72,4 +74,14 @@ export class PagebComponent implements OnInit {
       }
     );
   }
+  ver(){
+    this.router.navigate(["punto2B"]);
+  }
+  validarCampos(): boolean {
+    return !!this.fromValue && !!this.email && !!this.fromType && !!this.toType;
+  }
+  validarCamposConvertir(): boolean {
+    return !!this.fromValue && !!this.email && !!this.fromType && !!this.toType && !!this.result;
+  }
+  
 }

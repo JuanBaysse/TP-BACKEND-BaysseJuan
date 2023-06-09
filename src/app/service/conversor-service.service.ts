@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Moneda } from '../pageb/pageb/moneda';
-import { Transaccion } from '../models/Transaccion';
+import { Transaccion } from '../models/transaccion';
 
 @Injectable({
   providedIn: 'root'
@@ -66,6 +66,20 @@ registrarTransaccion(productoData: Transaccion): Observable<any> {
   return this.http.post(this.apiUrl2, body,HttpOption);
 }
  
+private apiUrl4 = 'http://localhost:3000/api/transacciones'; // Reemplaza con la URL correcta de tu API de productos
 
+
+obtenerTransacciones(): Observable<any> {
+  
+  return this.http.get(this.apiUrl4);
+}
+private apiUrl5 = 'http://localhost:3000/api/transacciones/divisas';
+
+
+
+  filtrarTransacciones(monedaOrigen: string, monedaDestino: string) {
+    const url = `${this.apiUrl5}?monedaOrigen=${monedaOrigen}&monedaDestino=${monedaDestino}`;
+    return this.http.get(url);
+  }
 }
 

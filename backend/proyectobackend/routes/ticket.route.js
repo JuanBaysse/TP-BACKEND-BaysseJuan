@@ -8,5 +8,5 @@ router.get('/', ticketCtrl.getAllTickets);
 router.delete('/:id', ticketCtrl.deleteTicket);
 router.put('/:id', ticketCtrl.updateTicket);
 router.get('/espectadores/:categoria', ticketCtrl.getEspectadoresByCategoria);
-
+router.get('/:id', ticketCtrl.getTicketById);
 module.exports = router;

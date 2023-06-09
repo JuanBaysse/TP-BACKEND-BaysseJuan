@@ -92,4 +92,21 @@ ticketCtrl.getEspectadoresByCategoria = async (req, res) => {
   }
 };
 
+ticketCtrl.getTicketById = async (req, res) => {
+  try {
+    const ticket = await Ticket.findById(req.params.id).populate('espectador');
+    if (!ticket) {
+      return res.status(404).json({
+        status: '0',
+        msg: 'Ticket no encontrado.',
+      });
+    }
+    res.json(ticket);
+  } catch (error) {
+    res.status(500).json({
+      status: '0',
+      msg: 'Error al obtener el ticket.',
+    });
+  }
+};
 module.exports = ticketCtrl;
